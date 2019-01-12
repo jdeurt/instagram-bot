@@ -1,16 +1,16 @@
-import { Bot } from "./lib/bot";
+import { Puppet } from "./lib/puppet";
 import cfg from "../config";
 
 export async function run() {
-    const bot = new Bot({
+    const puppet = new Puppet({
         defaultViewport: {
             width: 1080,
             height: 720
         }
     });
-    await bot.ready();
+    await puppet.ready();
 
-    const page = (await bot.newPage()).page;
+    const page = (await puppet.newPage()).page;
     await page.goto("https://www.instagram.com/accounts/login");
 
     await page.waitFor(() => !!document.querySelector("input[name='username']"));
@@ -39,7 +39,7 @@ export async function run() {
     });
 
     for (let i = 0; i < routes.length; i++) {
-        const page = (await bot.newPage()).page;
+        const page = (await puppet.newPage()).page;
         await page.goto("https://instagram.com" + routes[i]);
 
         if (!!(await page.$("button.coreSpriteHeartOpen"))) {
@@ -52,5 +52,5 @@ export async function run() {
         }
     }
 
-    await bot.destroy();
+    await puppet.destroy();
 }

@@ -3,7 +3,7 @@ import { Browser, Page, LaunchOptions } from "puppeteer";
 /**
  * A class that makes it easier to organize multiple pages in a Puppeteer browser.
  */
-export class Bot {
+export class Puppet {
     private controller: any;
     private browser: Browser;
     private launchOptions: LaunchOptions;
@@ -11,7 +11,7 @@ export class Bot {
     private pages: Map<string, Page>;
 
     /**
-     * Creates a new Bot.
+     * Creates a new Puppet.
      * @param {LaunchOptions} [options] Optional launch options for Puppeteer.
      */
     constructor(options?: LaunchOptions) {
@@ -22,7 +22,7 @@ export class Bot {
     }
 
     /**
-     * Returns a promise that resolves when the Bot is ready.
+     * Returns a promise that resolves when the Puppet is ready.
      * @returns {Promise<void>}
      */
     async ready(): Promise<void> {
@@ -30,7 +30,7 @@ export class Bot {
     }
 
     /**
-     * Returns a Page the bot is on.
+     * Returns a Page the Puppet is on.
      * @param {string} id The ID of the page to fetch.
      * @returns {Page}
      */
@@ -56,7 +56,7 @@ export class Bot {
     }
 
     /**
-     * Closes a page the bot is on.
+     * Closes a page the Puppet is on.
      * @param {string} id The ID of the page to close.
      * @returns {Promise<void>}
      */
