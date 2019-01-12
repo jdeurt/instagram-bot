@@ -2,6 +2,8 @@ import { Puppet } from "./lib/puppet";
 import cfg from "../config";
 
 export async function run() {
+    console.log(`\n----------\n[${new Date().toUTCString()}] Running new session...\n----------\n`);
+
     const puppet = new Puppet({
         defaultViewport: {
             width: 1080,
