@@ -1,7 +1,8 @@
-import { Browser, Page, Mouse, Keyboard, LaunchOptions } from "puppeteer";
+import { Browser, Page, LaunchOptions } from "puppeteer";
 
-declare type BotMap = {[key: string]: Bot};
-
+/**
+ * A class that makes it easier to organize multiple pages in a Puppeteer browser.
+ */
 export class Bot {
     private controller: any;
     private browser: Browser;
@@ -9,6 +10,10 @@ export class Bot {
     private uuid: Function;
     private pages: Map<string, Page>;
 
+    /**
+     * Creates a new Bot.
+     * @param {LaunchOptions} [options] Optional launch options for Puppeteer.
+     */
     constructor(options?: LaunchOptions) {
         this.controller = require("puppeteer");
         this.launchOptions = options || {};
@@ -16,18 +21,28 @@ export class Bot {
         this.pages = new Map();
     }
 
+    /**
+     * Returns a promise that resolves when the Bot is ready.
+     * @returns {Promise<void>}
+     */
     async ready(): Promise<void> {
         this.browser = await this.controller.launch(this.launchOptions);
     }
 
+    /**
+     * Returns a Page the bot is on.
+     * @param {string} id The ID of the page to fetch.
+     * @returns {Page}
+     */
     page(id: string): Page {
         return this.pages.get(id);
     }
 
-    listPageIDs(): Array<string> {
-        return [...this.pages.keys()];
-    }
-
+    /**
+     * Creates a new Page and returns the page ID and the Page object.
+     * @param {string} [id] The ID of the page. If no ID is provided one will be generated.
+     * @returns {Promise<{id: string, page: Page}>}
+     */
     async newPage(id?: string): Promise<{id: string, page: Page}> {
         const key: string = !!id ? id : this.uuid();
         const newPage: Page = await this.browser.newPage();
@@ -40,31 +55,22 @@ export class Bot {
         };
     }
 
+    /**
+     * Closes a page the bot is on.
+     * @param {string} id The ID of the page to close.
+     * @returns {Promise<void>}
+     */
     async closePage(id: string): Promise<void> {
         await this.pages.get(id).close();
         this.pages.delete(id);
     }
 
+    /**
+     * Destroys the page controller. The page controller can be generated again by calling ready().
+     * @returns {Promise<void>}
+     */
     async destroy(): Promise<void> {
         this.pages.clear();
         await this.browser.close();
-    }
-}
-
-export class BotNet {
-    private network: BotMap;
-
-    constructor(bots: BotMap | number) {
-        if (typeof bots === "object") {
-            this.network = bots;
-        } else {
-            for (let i = 0; i < bots; i++) {
-                this.network[i.toString()] = new Bot();
-            }
-        }
-    }
-
-    get(key: string): Bot {
-        return this.network[key];
     }
 }
