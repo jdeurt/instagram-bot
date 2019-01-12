@@ -9,22 +9,29 @@ export async function run() {
         }
     });
     await puppet.ready();
+    console.log("Puppet is ready.");
 
     const page = (await puppet.newPage()).page;
     await page.goto("https://www.instagram.com/accounts/login");
+    console.log("Opened instagram.");
 
     await page.waitFor(() => !!document.querySelector("input[name='username']"));
 
     await page.type("input[name='username']", cfg.USERNAME);
+    console.log("Typed username: " + cfg.USERNAME);
     await page.type("input[name='password']", cfg.PASSWORD);
+    console.log("Typed password: " + cfg.PASSWORD);
 
     await page.click("button[type='submit']");
+    console.log("Logging in...");
     await page.waitForNavigation();
+    console.log("Logged in.");
 
     await page.goto("https://www.instagram.com/explore/tags/dog");
     await page.addScriptTag({
         path: cfg.DIR + "/src/assets/jquery.min.js"
     });
+    console.log("Injected JQuery.");
 
     const routes: Array<string> = await page.evaluate(() => {
         const routes: Array<string> = [];
@@ -53,4 +60,5 @@ export async function run() {
     }
 
     await puppet.destroy();
+    console.log("Destroyed Puppet.");
 }
