@@ -1,9 +1,6 @@
 import { Bot } from "./lib/bot";
 import cfg from "../config";
 
-// Simple Instagram like bot.
-// Created by Juan de Urtubey
-
 export async function run() {
     const bot = new Bot({
         defaultViewport: {
