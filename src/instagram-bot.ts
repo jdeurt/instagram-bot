@@ -63,7 +63,7 @@ export async function run() {
 
         // follow account
         if (!!(await page.$("button[type='button']:contains(Follow)"))) {
-            await page.click("button[type='button']:contains(Follow)");
+            (await page.$("button[type='button']:contains(Follow)")).click();
         }
     }
 
