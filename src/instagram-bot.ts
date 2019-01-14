@@ -62,8 +62,8 @@ export async function run() {
         }
 
         // follow account
-        if (!!(await page.$("body > div:nth-child(15) > div > div.zZYga > div > article > header > div.o-MQd > div.PQo_0 > div.bY2yH > button"))) {
-            await page.click("body > div:nth-child(15) > div > div.zZYga > div > article > header > div.o-MQd > div.PQo_0 > div.bY2yH > button");
+        if (!!(await page.$("button[type='button']:contains(Follow)"))) {
+            await page.click("button[type='button']:contains(Follow)");
         }
     }
 
