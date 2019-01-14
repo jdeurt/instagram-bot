@@ -59,6 +59,11 @@ export async function run() {
         if (!!(await page.$("span[class*='glyphsSpriteSave']"))) {
             await page.click("span[class*='glyphsSpriteSave']");
         }
+
+        // follow account
+        if (!!(await page.$("body > div:nth-child(15) > div > div.zZYga > div > article > header > div.o-MQd > div.PQo_0 > div.bY2yH > button"))) {
+            await page.click("body > div:nth-child(15) > div > div.zZYga > div > article > header > div.o-MQd > div.PQo_0 > div.bY2yH > button");
+        }
     }
 
     await puppet.destroy();
