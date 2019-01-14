@@ -6,6 +6,8 @@ const config = {
     USERNAME: "username",
     PASSWORD: "password",
 
+    TAG: "dog",
+
     DIR: __dirname
 };
 

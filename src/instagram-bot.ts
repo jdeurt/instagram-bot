@@ -8,7 +8,8 @@ export async function run() {
         defaultViewport: {
             width: 1080,
             height: 720
-        }
+        },
+        headless: false
     });
     await puppet.ready();
     console.log("Puppet is ready.");
@@ -29,7 +30,7 @@ export async function run() {
     await page.waitForNavigation();
     console.log("Logged in.");
 
-    await page.goto("https://www.instagram.com/explore/tags/dog");
+    await page.goto("https://www.instagram.com/explore/tags/" + cfg.TAG);
     await page.addScriptTag({
         path: cfg.DIR + "/src/assets/jquery.min.js"
     });
