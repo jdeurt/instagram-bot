@@ -18,6 +18,7 @@
     "include": [
         "config.ts",
         "index.ts",
+        "index-test.ts",
         "src/**/*"
     ]
 }
