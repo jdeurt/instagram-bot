@@ -8,7 +8,8 @@ const config = {
 
     TAG: "dog",
 
-    DIR: __dirname
+    DIR: __dirname,
+    DEV: false
 };
 
 export default config;

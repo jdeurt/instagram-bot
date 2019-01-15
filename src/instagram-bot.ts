@@ -9,7 +9,7 @@ export async function run() {
             width: 1080,
             height: 720
         },
-        headless: false
+        headless: cfg.DEV
     });
     await puppet.ready();
     console.log("Puppet is ready.");
