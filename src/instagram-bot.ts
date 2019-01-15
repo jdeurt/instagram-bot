@@ -9,7 +9,7 @@ export async function run() {
             width: 1080,
             height: 720
         },
-        headless: cfg.DEV
+        headless: !cfg.DEV
     });
     await puppet.ready();
     console.log("Puppet is ready.");
@@ -49,7 +49,9 @@ export async function run() {
     });
 
     for (let i = 0; i < routes.length; i++) {
-        const page = (await puppet.newPage()).page;
+        const pageHandle = await puppet.newPage();
+        const page = pageHandle.page;
+        const pageID = pageHandle.id;
         await page.goto("https://instagram.com" + routes[i]);
 
         if (!!(await page.$("button.coreSpriteHeartOpen"))) {
@@ -63,8 +65,10 @@ export async function run() {
 
         // follow account
         if (!!(await page.$x("//button[contains(text(), 'Follow')]"))) {
-            (await page.$x("//button[contains(text(), 'Follow')]"))[0].click();
+            await (await page.$x("//button[contains(text(), 'Follow')]"))[0].click();
         }
+
+        await puppet.closePage(pageID);
     }
 
     await puppet.destroy();
