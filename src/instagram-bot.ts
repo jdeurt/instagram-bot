@@ -64,9 +64,9 @@ export async function run() {
         }
 
         // follow account
-        if (!!(await page.$x("//button[contains(text(), 'Follow')]"))) {
-            await (await page.$x("//button[contains(text(), 'Follow')]"))[0].click();
-        }
+        //if (!!(await page.$x("//button[contains(text(), 'Follow')]"))) {
+        //    await (await page.$x("//button[contains(text(), 'Follow')]"))[0].click();
+        //}
 
         await puppet.closePage(pageID);
     }
