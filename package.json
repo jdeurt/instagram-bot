@@ -23,6 +23,7 @@
   "devDependencies": {
     "@types/dotenv": "^6.1.0",
     "@types/jquery": "^3.3.29",
+    "@types/node": "^12.12.14",
     "@types/puppeteer": "^1.11.1",
     "@types/shelljs": "^0.8.1",
     "nodemon": "^1.18.9",

@@ -5,8 +5,9 @@ const config = {
 
     USERNAME: "username",
     PASSWORD: "password",
+    PROFILE_PAGE_ID: "username",
 
-    TAG: "dog",
+    TAGS: ["dog"],
 
     DIR: __dirname,
     DEV: false

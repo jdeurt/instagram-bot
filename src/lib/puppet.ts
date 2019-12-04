@@ -43,7 +43,7 @@ export class Puppet {
      * @param {string} [id] The ID of the page. If no ID is provided one will be generated.
      * @returns {Promise<{id: string, page: Page}>}
      */
-    async newPage(id?: string): Promise<{id: string, page: Page}> {
+    async newPage(id?: string): Promise<{ id: string, page: Page }> {
         const key: string = !!id ? id : this.uuid();
         const newPage: Page = await this.browser.newPage();
 
